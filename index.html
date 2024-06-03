@@ -5,23 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer> </script>
 </head>
 <body>
     <main> 
             <div class="player"> 
                 <h2> Player 1 </h2>
                 <p class="total-score"> 0 </p>
-                <p class="final-score"> 0 </p>
+                <button>
+                    <p> Current Score </p>
+                    <p class="current-score"> 0 </p>    
+                </button>
             </div>
             <div class="buttons"> 
                 <button class="reset-game"> New game </button>
+                <img class="diceImage hidden" src="dice-1.png"> 
                 <button class="roll-dice"> Roll Dice </button>
                 <button class="hold"> Hold </button>
             </div>
             <div class="player"> 
-                <h2> Text </h2>
+                <h2> Player 2 </h2>
                 <p class="total-score"> 0 </p>
-                <p class="final-score"> 0 </p>
+                <button>
+                    <p> Current Score </p>
+                    <p class="current-score"> 0 </p>    
+                </button>
             </div>
     </main>
 </body>
