@@ -31,3 +31,11 @@ main {
 .player--winner {
   background-color: green;
 }
+.player--active {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+
+.player--active .current {
+  opacity: 1;
+}
