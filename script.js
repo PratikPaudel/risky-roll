@@ -1,11 +1,17 @@
 'script'
 const btnHold = document.querySelector('.hold'); 
+const player0EL = document.querySelector('.player--0');
+const player1EL = document.querySelector('.player--1');
+
 let diceValue;
 let currentScore = 0;
+
 const playerScoreArray = [0, 0];
 const rollDiceEl = document.querySelector(".roll-dice");
 let activePlayer = 0;
 rollDiceEl.addEventListener('click', function () {
+    const playerScoreEl0 = document.getElementById('score--0').textContent= playerScoreArray[0];
+    const playerScoreEl1 = document.getElementById('score--1').textContent= playerScoreArray[1];
     let diceImage = document.querySelector('.diceImage');
     diceImage.classList.remove('hidden');
     const diceValue= Math.floor(Math.random()*6)+1;
@@ -32,7 +38,7 @@ const switchPlayer = function() {
             activePlayer = 0;
         }
 }
-const playerScoreEl0 = document.getElementById('score--0').textContent= playerScoreArray[0];
-console.log(playerScoreEl0);
-const playerScoreEl1 = document.getElementById('score--1').textContent= playerScoreArray[1];
-console.log(playerScoreEl1);
+player0El.classList.toggle('player-active');
+player1El.classList.toggle('player-active');
+
+    
