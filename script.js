@@ -1,8 +1,12 @@
 'script'
 const totalScoreEl = document.querySelector('.total-score').textContent = "hi";
 const btnHold = document.querySelector('.hold'); 
+const player0EL = document.querySelector('.player--0');
+const player1EL = document.querySelector('.player--1');
+
 let diceValue;
 let currentScore = 0;
+
 const playerScoreArray = [0, 0];
 const rollDiceEl = document.querySelector(".roll-dice");
 let activePlayer = 0;
@@ -32,4 +36,7 @@ const switchPlayer = function() {
         } else {
             activePlayer = 0;
         }
+    player0El.classList.toggle('player-active');
+    player1El.classList.toggle('player-active');
+    
 }
