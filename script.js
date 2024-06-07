@@ -1,5 +1,4 @@
 'script'
-const totalScoreEl = document.querySelector('.total-score').textContent = "hi";
 const btnHold = document.querySelector('.hold'); 
 let diceValue;
 let currentScore = 0;
@@ -11,7 +10,6 @@ rollDiceEl.addEventListener('click', function () {
     diceImage.classList.remove('hidden');
     const diceValue= Math.floor(Math.random()*6)+1;
     diceImage.src = `dice-${diceValue}.png`;
-
     if (diceValue !== 1) {
         currentScore += diceValue;
         document.getElementById(`current--${activePlayer}`).textContent = currentScore;
@@ -20,8 +18,9 @@ rollDiceEl.addEventListener('click', function () {
         switchPlayer();
     }
     if (btnHold.addEventListener('click', () => {
-        score[activePlayer] += currentScore;
-        document.getElementById(`score--${activePlayer}`).textContent = score[activePlayer];
+        playerScoreArray[activePlayer] += currentScore;
+        document.getElementById(`score--${activePlayer}`).textContent = playerScoreArray[activePlayer];
+        switchPlayer();
     }));
 }); 
 const switchPlayer = function() {
@@ -33,3 +32,7 @@ const switchPlayer = function() {
             activePlayer = 0;
         }
 }
+const playerScoreEl0 = document.getElementById('score--0').textContent= playerScoreArray[0];
+console.log(playerScoreEl0);
+const playerScoreEl1 = document.getElementById('score--1').textContent= playerScoreArray[1];
+console.log(playerScoreEl1);
