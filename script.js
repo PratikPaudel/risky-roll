@@ -8,6 +8,7 @@ let currentScore = 0;
 
 const playerScoreArray = [0, 0];
 const rollDiceEl = document.querySelector(".roll-dice");
+const playerBg = document.querySelector(`player--${}`);
 let activePlayer = 0;
 rollDiceEl.addEventListener('click', function () {
     const playerScoreEl0 = document.getElementById('score--0').textContent= playerScoreArray[0];
@@ -25,6 +26,10 @@ rollDiceEl.addEventListener('click', function () {
     }
     if (btnHold.addEventListener('click', () => {
         playerScoreArray[activePlayer] += currentScore;
+        if (playerScoreArray[activePlayer] >= 100) {
+            console.log("You win");
+        }
+        document.classList.add('player--winner');
         document.getElementById(`score--${activePlayer}`).textContent = playerScoreArray[activePlayer];
         switchPlayer();
     }));
@@ -38,7 +43,7 @@ const switchPlayer = function() {
             activePlayer = 0;
         }
 }
-player0El.classList.toggle('player-active');
-player1El.classList.toggle('player-active');
+player0El.classList.toggle('player--active');
+player1El.classList.toggle('player--active');
 
     
