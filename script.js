@@ -9,12 +9,14 @@ let diceImage = document.querySelector('.diceImage');
 let activePlayer = 0;
 
 const updateScores = function () {
-    const playerScoreEl0 = document.getElementById(`score--${activePlayer}`).textContent= playerScoreArray[activePlayer];
+    document.getElementById(`score--${activePlayer}`).textContent= playerScoreArray[activePlayer];
 }
 
-const updateBackground = function (activePlayer) {
-    document.querySelector(`.player--${activePlayer}`).classList.toggle('player--active');
-    console.log(activePlayer + "hiii");
+const addBackground = function (activePlayer) {
+    document.querySelector(`.player--${activePlayer}`).classList.add('player--active');
+}
+const removeBackground = function (activePlayer) {
+    document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
 }
 
 const winnerWinnerChickenDinner = function () {
@@ -28,27 +30,27 @@ rollDiceEl.addEventListener('click', function () {
     diceValue !== 1 
     ? (currentScore += diceValue, document.getElementById(`current--${activePlayer}`).textContent = currentScore)
     : switchPlayer();
-    updateBackground(activePlayer);
     });
 
 const switchPlayer = function() {
     console.log(activePlayer);
     updateScores(activePlayer);
+    removeBackground(activePlayer);
     currentScore = 0;
     document.getElementById(`current--${activePlayer}`).textContent = 0; 
-    updateBackground(activePlayer);
     activePlayer = 1 - activePlayer;
+    addBackground(activePlayer);
 }
 
 const handleHoldButton = function () {
     playerScoreArray[activePlayer] += currentScore;
     updateScores(activePlayer);
-        if (playerScoreArray[activePlayer] >= 30) {
-            playerWon(activePlayer);
-        }
-        else {
-        switchPlayer();
-        }
+    if (playerScoreArray[activePlayer] >= 30) {
+        playerWon(activePlayer);
+    }
+    else {
+    switchPlayer();
+    }
 }
 
 const playerWon= function (activePlayer) {
