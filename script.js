@@ -1,5 +1,6 @@
 'script'
 const btnHold = document.querySelector('.hold'); 
+const newGame = document.querySelector('.reset-game'); 
 let diceValue;
 let currentScore = 0;
 const playerScoreArray = [0, 0];
@@ -53,13 +54,28 @@ const handleHoldButton = function () {
     }
 }
 
-const playerWon= function (activePlayer) {
+const playerWon = function (activePlayer) {
     winnerWinnerChickenDinner(activePlayer);
     diceImage.classList.add('hidden');
     console.log("You win player:" + (activePlayer + 1));
 }
 
+const resetGame = function () {
+    console.log("clicked")
+    playerScoreArray[0] = 0;
+    playerScoreArray[1] = 0;
+    currentScore = 0;
+    activePlayer = 0;
+    diceImage.classList.add('hidden');
+    document.getElementById('score--0').textContent= 0;
+    document.getElementById('score--1').textContent= 0;
+    document.getElementById('current--0').textContent = 0; 
+    document.getElementById('current--1').textContent = 0; 
+}
+
 btnHold.addEventListener('click', handleHoldButton);
+newGame.addEventListener('click', resetGame);
+
 
 
 
