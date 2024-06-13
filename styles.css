@@ -19,6 +19,13 @@
   background-size: 20px 20px;
   background-image: repeating-linear-gradient(0deg, #8b0c0c, #8b0c0c 1px, #ffffff 1px, #ffffff);
 }
+.buttons::before {
+  content: 'The goal is to be the first player to reach 100 points. Points accumulate with each roll, but rolling a 1 ends your turn and cancels your current points. Achieve 100 points or more to win.';
+  position: absolute;
+  top: -100px;
+  width: 500px;
+  text-align: center;
+}
 
 main .player h1 {
   color: green;
