@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
 .background-main {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60rem;
+  height: 55rem;
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .background-main::before {
@@ -20,10 +20,7 @@
   background-size: 20px 20px;
   background-image: repeating-linear-gradient(0deg, #8b0c0c, #8b0c0c 1px, #ffffff 1px, #ffffff);
 }
-.buttons::before {
-  content: 'The goal is to be the first player to reach set total points. Points accumulate with each roll, but rolling a 1 ends your turn and cancels your current points.';
-  position: absolute;
-  top: -165px;
+main text p {
   width: 550px;
   text-align: center;
   font-family: "Kalam", cursive;
@@ -31,7 +28,17 @@
   font-style: normal;
   letter-spacing: 1;
 }
-
+heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main-contents {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 main .player h1 {
   color: green;
 }

@@ -6,9 +6,18 @@ let currentScore = 0;
 const playerScoreArray = [0, 0];
 const rollDiceEl = document.querySelector(".roll-dice");
 let diceImage = document.querySelector('.diceImage');
-
 let activePlayer = 0;
+const slider = document.getElementById("scoreSlider");
+const scoreValue = document.getElementById("scoreValue");
+let targetValue = 0;
+// Display the default slider value
+scoreValue.textContent = slider.value;
 
+// Update the current slider value (each time the slider handle is dragged)
+slider.oninput = function() {
+  scoreValue.textContent = this.value;
+  targetValue = this.value;
+};
 const updateScores = function () {
     document.getElementById(`score--${activePlayer}`).textContent= playerScoreArray[activePlayer];
 }
@@ -18,10 +27,6 @@ const addBackground = function (activePlayer) {
 }
 const removeBackground = function (activePlayer) {
     document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
-}
-
-const winnerWinnerChickenDinner = function () {
-    document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
 }
 
 rollDiceEl.addEventListener('click', function () {
@@ -50,7 +55,7 @@ const switchPlayer = function() {
 const handleHoldButton = function () {
     playerScoreArray[activePlayer] += currentScore;
     updateScores(activePlayer);
-    if (playerScoreArray[activePlayer] >= 10) {
+    if (playerScoreArray[activePlayer] >= targetValue) {
         playerWon(activePlayer);
     }
     else {
@@ -59,14 +64,13 @@ const handleHoldButton = function () {
 }
 
 const playerWon = function (activePlayer) {
-    winnerWinnerChickenDinner(activePlayer);
     diceImage.classList.add('hidden');
     confetti({
         particleCount: 150,
         spread: 120
       });
     console.log("You win player:" + (activePlayer + 1));
-    document.querySelector(`.player--${activePlayer}-winner`).textContent = "Winner!!";
+    document.querySelector(`.player--${activePlayer}--winner`).textContent = "Winner!!";
 }
 
 const resetGame = function () {
@@ -80,6 +84,10 @@ const resetGame = function () {
     document.getElementById('score--1').textContent= 0;
     document.getElementById('current--0').textContent = 0; 
     document.getElementById('current--1').textContent = 0; 
+    document.querySelector(`.player--0--winner`).textContent = "";
+    document.querySelector(`.player--1--winner`).textContent = "";
+
+
 }
 
 btnHold.addEventListener('click', handleHoldButton);
