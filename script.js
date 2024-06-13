@@ -1,15 +1,15 @@
 'script'
 const btnHold = document.querySelector('.hold'); 
 const newGame = document.querySelector('.reset-game'); 
-let diceValue;
-let currentScore = 0;
-const playerScoreArray = [0, 0];
 const rollDiceEl = document.querySelector(".roll-dice");
 let diceImage = document.querySelector('.diceImage');
-let activePlayer = 0;
 const slider = document.getElementById("scoreSlider");
 const scoreValue = document.getElementById("scoreValue");
-let targetValue = 0;
+let diceValue;
+let currentScore;
+const playerScoreArray = [];
+let activePlayer;
+let targetValue;
 // Display the default slider value
 scoreValue.textContent = slider.value;
 
@@ -30,6 +30,24 @@ const removeBackground = function (activePlayer) {
     document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
 }
 
+const resetGame = function () {
+    currentScore = 0;
+    initialTargetValue = 30;
+    activePlayer = 0;
+    scoreValue.textContent = initialTargetValue;
+    playerScoreArray[0] = 0;
+    playerScoreArray[1] = 0;
+    scoreValue.value = 20;
+    diceImage.classList.add('hidden');
+    document.getElementById('score--0').textContent= 0;
+    document.getElementById('score--1').textContent= 0;
+    document.getElementById('current--0').textContent = 0; 
+    document.getElementById('current--1').textContent = 0; 
+    document.querySelector(`.player--0--winner`).textContent = "";
+    document.querySelector(`.player--1--winner`).textContent = "";
+}
+
+resetGame();
 rollDiceEl.addEventListener('click', function () {
     diceImage.classList.remove('hidden');
     diceImage.classList.add('shaking');
@@ -75,22 +93,6 @@ const playerWon = function (activePlayer) {
     document.querySelector(`.player--${activePlayer}--winner`).textContent = "Winner!!";
 }
 
-const resetGame = function () {
-    console.log("clicked")
-    playerScoreArray[0] = 0;
-    playerScoreArray[1] = 0;
-    currentScore = 0;
-    activePlayer = 0;
-    diceImage.classList.add('hidden');
-    document.getElementById('score--0').textContent= 0;
-    document.getElementById('score--1').textContent= 0;
-    document.getElementById('current--0').textContent = 0; 
-    document.getElementById('current--1').textContent = 0; 
-    document.querySelector(`.player--0--winner`).textContent = "";
-    document.querySelector(`.player--1--winner`).textContent = "";
-
-
-}
 
 btnHold.addEventListener('click', handleHoldButton);
 newGame.addEventListener('click', resetGame);
