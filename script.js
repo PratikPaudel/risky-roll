@@ -17,6 +17,7 @@ scoreValue.textContent = slider.value;
 slider.oninput = function() {
   scoreValue.textContent = this.value;
   targetValue = this.value;
+  console.log("target value:" + targetValue);
 };
 const updateScores = function () {
     document.getElementById(`score--${activePlayer}`).textContent= playerScoreArray[activePlayer];
@@ -55,6 +56,7 @@ const switchPlayer = function() {
 const handleHoldButton = function () {
     playerScoreArray[activePlayer] += currentScore;
     updateScores(activePlayer);
+    console.log("target value:" + targetValue);
     if (playerScoreArray[activePlayer] >= targetValue) {
         playerWon(activePlayer);
     }

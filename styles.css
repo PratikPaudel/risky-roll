@@ -57,23 +57,20 @@ main .player h1 {
   position: relative;
 }
 
-.main-contents .player .total-score:before {
+/* .main-contents .player .total-score:before {
   content: "";
   position: absolute;
-  bottom: -20px;
   left: 0;
   width: 100%;
   border-bottom: 2px solid black;
-}
+} */
 
 .player button {
   all: unset;
   text-align: center;
-  .current-score {
-    outline: 2px black dashed;
-    border-radius: 5px;
-    padding: 1rem;
-  }
+  outline: 1px black dashed;
+  border-radius: 5px;
+  padding: 0.2rem;
 }
 
 .buttons {
