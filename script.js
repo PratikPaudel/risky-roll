@@ -26,6 +26,10 @@ const winnerWinnerChickenDinner = function () {
 
 rollDiceEl.addEventListener('click', function () {
     diceImage.classList.remove('hidden');
+    diceImage.classList.add('shaking');
+    setTimeout(() => {
+        document.querySelector('.shaking')?.classList.remove('shaking');
+      }, 500);
     const diceValue= Math.floor(Math.random()*6)+1;
     diceImage.src = `dice-${diceValue}.png`;
     diceValue !== 1 
@@ -46,7 +50,7 @@ const switchPlayer = function() {
 const handleHoldButton = function () {
     playerScoreArray[activePlayer] += currentScore;
     updateScores(activePlayer);
-    if (playerScoreArray[activePlayer] >= 30) {
+    if (playerScoreArray[activePlayer] >= 10) {
         playerWon(activePlayer);
     }
     else {
@@ -57,7 +61,12 @@ const handleHoldButton = function () {
 const playerWon = function (activePlayer) {
     winnerWinnerChickenDinner(activePlayer);
     diceImage.classList.add('hidden');
+    confetti({
+        particleCount: 150,
+        spread: 120
+      });
     console.log("You win player:" + (activePlayer + 1));
+    document.querySelector(`.player--${activePlayer}-winner`).textContent = "Winner!!";
 }
 
 const resetGame = function () {

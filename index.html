@@ -6,10 +6,15 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer> </script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <main class="background-main"> 
+        <heading> 
+            <h3> Who ever gets to the score 100 first wins. </h3>
+        </heading>
             <div class="player player--0 player--active"> 
+                <h1 class="player--0-winner"> </h1>
                 <h2> Player 1 </h2>
                 <p class="total-score" id="score--0"> 0 </p>
                 <button>
@@ -19,11 +24,12 @@
             </div>
             <div class="buttons"> 
                 <button class="reset-game"> New game </button>
-                <img class="diceImage hidden" src="dice-1.png"> 
+                <img class="diceImage hidden shaking" src="dice-1.png"> 
                 <button class="roll-dice"> Roll Dice </button>
                 <button class="hold"> Hold </button>
             </div>
             <div class="player player--1"> 
+                <h1 class="player--1-winner"> </h1>
                 <h2> Player 2 </h2>
                 <p class="total-score" id="score--1"> 0 </p>
                 <button>
