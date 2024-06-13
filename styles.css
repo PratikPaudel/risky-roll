@@ -51,6 +51,21 @@ main .player h1 {
     flex-direction: column;
     padding: 10rem;
 }
+
+
+.main-contents .player .total-score {
+  position: relative;
+}
+
+.main-contents .player .total-score:before {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+
 .player button {
   all: unset;
   text-align: center;
