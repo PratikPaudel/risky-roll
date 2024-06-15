@@ -35,11 +35,6 @@ const removeBackground = function (activePlayer) {
 
 const resetGame = function () {
     currentScore = 0;
-    targetValue = localStorage.getItem("savedValue");
-    slider.value = targetValue;
-    console.log("how are you");
-    console.log(targetValue);
-    scoreValue.textContent = targetValue;
     activePlayer = 0;
     playerScoreArray[0] = 0;
     playerScoreArray[1] = 0;
@@ -53,6 +48,20 @@ const resetGame = function () {
 }
 
 resetGame();
+if (localStorage.getItem("savedValue") == null || localStorage.getItem("savedValue") === 0) {
+    targetValue = 50;
+    console.log(targetValue);
+    slider.value = targetValue;
+    scoreValue.textContent = targetValue;
+}
+else {
+    targetValue = localStorage.getItem("savedValue");
+    console.log(targetValue);
+    slider.value = targetValue;
+    console.log("how are you");
+    console.log(targetValue);
+    scoreValue.textContent = targetValue;
+}
 rollDiceEl.addEventListener('click', function () {
     diceImage.classList.remove('hidden');
     diceImage.classList.add('shaking');
@@ -67,7 +76,6 @@ rollDiceEl.addEventListener('click', function () {
     });
 
 const switchPlayer = function() {
-    console.log(activePlayer);
     updateScores(activePlayer);
     removeBackground(activePlayer);
     currentScore = 0;
@@ -79,7 +87,6 @@ const switchPlayer = function() {
 const handleHoldButton = function () {
     playerScoreArray[activePlayer] += currentScore;
     updateScores(activePlayer);
-    console.log("target value:" + targetValue);
     if (playerScoreArray[activePlayer] >= targetValue) {
         playerWon(activePlayer);
     }
@@ -94,9 +101,7 @@ const playerWon = function (activePlayer) {
         particleCount: 150,
         spread: 120
       });
-    console.log("You win player:" + (activePlayer + 1));
     document.querySelector(`.player--${activePlayer}--winner`).textContent = "Winner!!";
-    resetGame();
 }
 
 
