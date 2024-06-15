@@ -26,7 +26,6 @@ main text p {
   font-family: "Kalam", cursive;
   font-weight: 300;
   font-style: normal;
-  letter-spacing: 1;
 }
 heading {
   display: flex;

@@ -11,14 +11,17 @@ const playerScoreArray = [];
 let activePlayer;
 let targetValue;
 // Display the default slider value
-scoreValue.textContent = slider.value;
 
 // Update the current slider value (each time the slider handle is dragged)
 slider.oninput = function() {
   scoreValue.textContent = this.value;
   targetValue = this.value;
-  console.log("target value:" + targetValue);
+  localStorage.setItem("savedValue", targetValue);
+  console.log("hi there i am fine");
+  console.log(localStorage.getItem("savedValue"));
+
 };
+
 const updateScores = function () {
     document.getElementById(`score--${activePlayer}`).textContent= playerScoreArray[activePlayer];
 }
@@ -32,12 +35,14 @@ const removeBackground = function (activePlayer) {
 
 const resetGame = function () {
     currentScore = 0;
-    initialTargetValue = 30;
+    targetValue = localStorage.getItem("savedValue");
+    slider.value = targetValue;
+    console.log("how are you");
+    console.log(targetValue);
+    scoreValue.textContent = targetValue;
     activePlayer = 0;
-    scoreValue.textContent = initialTargetValue;
     playerScoreArray[0] = 0;
     playerScoreArray[1] = 0;
-    scoreValue.value = 20;
     diceImage.classList.add('hidden');
     document.getElementById('score--0').textContent= 0;
     document.getElementById('score--1').textContent= 0;
@@ -91,6 +96,7 @@ const playerWon = function (activePlayer) {
       });
     console.log("You win player:" + (activePlayer + 1));
     document.querySelector(`.player--${activePlayer}--winner`).textContent = "Winner!!";
+    resetGame();
 }
 
 
