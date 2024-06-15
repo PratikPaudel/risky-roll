@@ -11,9 +11,6 @@ const playerScoreArray = [];
 let activePlayer;
 let targetValue;
 
-// Display the default slider value
-
-// Update the current slider value (each time the slider handle is dragged)
 slider.oninput = function() {
   scoreValue.textContent = this.value;
   targetValue = this.value;
@@ -24,7 +21,7 @@ slider.oninput = function() {
 
 const updateScores = function () {
     document.getElementById(`score--${activePlayer}`).textContent= playerScoreArray[activePlayer];
-    const totalScore = document.querySelector(".total-score");
+    const totalScore = document.getElementById(`score--${activePlayer}`);
     // console.log(totalScore);
     // const ratingContent = totalScore.innerHTML;
     // const ratingScore = parseInt(ratingContent);
@@ -34,10 +31,9 @@ const updateScores = function () {
     // Add score class to the rating
     totalScore.classList.remove("bad", "meh", "good");
     totalScore.classList.add(scoreClass);
-    // setTimeout(() => {
     // After adding the class, get its color
     const ratingColor = window.getComputedStyle(totalScore).backgroundColor;
-    console.log(ratingColor);
+    console.log(window.getComputedStyle(totalScore));
     // Define the background gradient according to the score and color
     const gradient = `background: conic-gradient(${ratingColor} ${((playerScoreArray[activePlayer] / targetValue) * 100).toFixed(2)}%, transparent 0 100%)`;
 
@@ -46,17 +42,7 @@ const updateScores = function () {
 
     // Wrap the content in a tag to show it above the pseudo element that masks the bar
     totalScore.innerHTML = `<span>${playerScoreArray[activePlayer]}</span>`; 
-// }, 
-    // 500);
 }
-
-const addBackground = function (activePlayer) {
-    document.querySelector(`.player--${activePlayer}`).classList.add('player--active');
-}
-const removeBackground = function (activePlayer) {
-    document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
-}
-
 
 const resetGame = function () {
     currentScore = 0;
@@ -102,11 +88,9 @@ rollDiceEl.addEventListener('click', function () {
 
 const switchPlayer = function() {
     updateScores(activePlayer);
-    removeBackground(activePlayer);
     currentScore = 0;
     document.getElementById(`current--${activePlayer}`).textContent = 0; 
     activePlayer = 1 - activePlayer;
-    addBackground(activePlayer);
 }
 
 const handleHoldButton = function () {
