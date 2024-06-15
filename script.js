@@ -10,6 +10,7 @@ let currentScore;
 const playerScoreArray = [];
 let activePlayer;
 let targetValue;
+
 // Display the default slider value
 
 // Update the current slider value (each time the slider handle is dragged)
@@ -17,13 +18,36 @@ slider.oninput = function() {
   scoreValue.textContent = this.value;
   targetValue = this.value;
   localStorage.setItem("savedValue", targetValue);
-  console.log("hi there i am fine");
-  console.log(localStorage.getItem("savedValue"));
-
+//   console.log("hi there i am fine");
+//   console.log(localStorage.getItem("savedValue"));
 };
 
 const updateScores = function () {
     document.getElementById(`score--${activePlayer}`).textContent= playerScoreArray[activePlayer];
+    const totalScore = document.querySelector(".total-score");
+    // console.log(totalScore);
+    // const ratingContent = totalScore.innerHTML;
+    // const ratingScore = parseInt(ratingContent);
+    // Define if the score is good, meh or bad according to its value
+    // console.log(playerScoreArray[activePlayer]/targetValue);
+    const scoreClass = (playerScoreArray[activePlayer]/targetValue) < 0.4 ? "bad" : (playerScoreArray[activePlayer]/targetValue) < 0.6 ? "meh" : "good";
+    // Add score class to the rating
+    totalScore.classList.remove("bad", "meh", "good");
+    totalScore.classList.add(scoreClass);
+    // setTimeout(() => {
+    // After adding the class, get its color
+    const ratingColor = window.getComputedStyle(totalScore).backgroundColor;
+    console.log(ratingColor);
+    // Define the background gradient according to the score and color
+    const gradient = `background: conic-gradient(${ratingColor} ${((playerScoreArray[activePlayer] / targetValue) * 100).toFixed(2)}%, transparent 0 100%)`;
+
+    // Set the gradient as the rating background
+    totalScore.setAttribute("style", gradient);
+
+    // Wrap the content in a tag to show it above the pseudo element that masks the bar
+    totalScore.innerHTML = `<span>${playerScoreArray[activePlayer]}</span>`; 
+// }, 
+    // 500);
 }
 
 const addBackground = function (activePlayer) {
@@ -32,6 +56,7 @@ const addBackground = function (activePlayer) {
 const removeBackground = function (activePlayer) {
     document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
 }
+
 
 const resetGame = function () {
     currentScore = 0;
@@ -50,16 +75,16 @@ const resetGame = function () {
 resetGame();
 if (localStorage.getItem("savedValue") == null || localStorage.getItem("savedValue") === 0) {
     targetValue = 50;
-    console.log(targetValue);
+    // console.log(targetValue);
     slider.value = targetValue;
     scoreValue.textContent = targetValue;
 }
 else {
     targetValue = localStorage.getItem("savedValue");
-    console.log(targetValue);
+    // console.log(targetValue);
     slider.value = targetValue;
-    console.log("how are you");
-    console.log(targetValue);
+    // console.log("how are you");
+    // console.log(targetValue);
     scoreValue.textContent = targetValue;
 }
 rollDiceEl.addEventListener('click', function () {
