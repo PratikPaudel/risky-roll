@@ -27,10 +27,10 @@ const updateScores = function () {
     totalScore.classList.add(scoreClass);
 
     const gradient = scoreClass === "bad" ?
-                             `background: conic-gradient(red ${percentage}%, transparent ${percentage}% 100%)` :
+                             `background: conic-gradient(var(--rating-color-bad) ${percentage}%, transparent ${percentage}% 100%)` :
                              scoreClass === "meh" ?
-                             `background: conic-gradient(yellow ${percentage}%, transparent ${percentage}% 100%)` :
-                             `background: conic-gradient(green ${percentage}%, transparent ${percentage}% 100%)`;
+                             `background: conic-gradient(var(--rating-color-meh) ${percentage}%, transparent ${percentage}% 100%)` :
+                             `background: conic-gradient(var(--rating-color-good) ${percentage}%, transparent ${percentage}% 100%)`;
 
     // const ratingColor = window.getComputedStyle(totalScoreBackground).backgroundColor;
     // const gradient = `background: conic-gradient(${ratingColor} ${percentage}%, transparent ${percentage}% 100%)`;
@@ -55,16 +55,12 @@ const resetGame = function () {
 resetGame();
 if (localStorage.getItem("savedValue") == null || localStorage.getItem("savedValue") === 0) {
     targetValue = 50;
-    // console.log(targetValue);
     slider.value = targetValue;
     scoreValue.textContent = targetValue;
 }
 else {
     targetValue = localStorage.getItem("savedValue");
-    // console.log(targetValue);
     slider.value = targetValue;
-    // console.log("how are you");
-    // console.log(targetValue);
     scoreValue.textContent = targetValue;
 }
 rollDiceEl.addEventListener('click', function () {

@@ -56,14 +56,6 @@ main .player h1 {
   position: relative;
 }
 
-/* .main-contents .player .total-score:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 100%;
-  border-bottom: 2px solid black;
-} */
-
 :root {
   --rating-size: 10rem;
   --bar-size: 1rem;
@@ -213,11 +205,7 @@ main .player h1 {
 .player--active {
 
 }
-/* .total-score {
-  font-size: 2rem;
-  padding: 1rem;
-  color: green;
-} */
+
 .shaking {
   animation: shake 0.5s;
 }
