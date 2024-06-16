@@ -10,6 +10,7 @@ let currentScore;
 const playerScoreArray = [];
 let activePlayer;
 let targetValue;
+let playerWin = false;
 
 slider.oninput = function() {
   scoreValue.textContent = this.value;
@@ -50,6 +51,11 @@ const resetGame = function () {
     document.getElementById('current--1').textContent = 0; 
     document.querySelector(`.player--0--winner`).textContent = "";
     document.querySelector(`.player--1--winner`).textContent = "";
+    const totalScoreElements = document.querySelectorAll('.total-score');
+    totalScoreElements.forEach(element => {
+        element.classList.remove('bad', 'meh', 'good');
+        element.removeAttribute('style');
+    });
 }
 
 resetGame();
@@ -58,12 +64,15 @@ if (localStorage.getItem("savedValue") == null || localStorage.getItem("savedVal
     slider.value = targetValue;
     scoreValue.textContent = targetValue;
 }
+
 else {
     targetValue = localStorage.getItem("savedValue");
     slider.value = targetValue;
     scoreValue.textContent = targetValue;
 }
+
 rollDiceEl.addEventListener('click', function () {
+    if (!playerWin) {
     diceImage.classList.remove('hidden');
     diceImage.classList.add('shaking');
     setTimeout(() => {
@@ -74,7 +83,7 @@ rollDiceEl.addEventListener('click', function () {
     diceValue !== 1 
     ? (currentScore += diceValue, document.getElementById(`current--${activePlayer}`).textContent = currentScore)
     : switchPlayer();
-    });
+    }});
 
 const switchPlayer = function() {
     updateScores(activePlayer);
@@ -84,6 +93,7 @@ const switchPlayer = function() {
 }
 
 const handleHoldButton = function () {
+    if (!playerWin) {
     playerScoreArray[activePlayer] += currentScore;
     updateScores(activePlayer);
     if (playerScoreArray[activePlayer] >= targetValue) {
@@ -93,16 +103,16 @@ const handleHoldButton = function () {
     switchPlayer();
     }
 }
+}
 
 const playerWon = function (activePlayer) {
+    playerWin = true;
     diceImage.classList.add('hidden');
     confetti({
         particleCount: 150,
         spread: 120
       });
     document.querySelector(`.player--${activePlayer}--winner`).textContent = "Winner!!";
-    rollDiceEl.addEventListener('click', preventDeafult());
-    btnHold.addEventListener('click', preventDeafult());
 }
 
 btnHold.addEventListener('click', handleHoldButton);
