@@ -33,10 +33,9 @@ const updateScores = function () {
     totalScore.classList.add(scoreClass);
     // After adding the class, get its color
     const ratingColor = window.getComputedStyle(totalScore).backgroundColor;
-    console.log(window.getComputedStyle(totalScore));
+    console.log(ratingColor);
     // Define the background gradient according to the score and color
-    const gradient = `background: conic-gradient(${ratingColor} ${((playerScoreArray[activePlayer] / targetValue) * 100).toFixed(2)}%, transparent 0 100%)`;
-
+    const gradient = `background: conic-gradient(green ${((playerScoreArray[activePlayer] / targetValue) * 100).toFixed(2)}%, transparent 0 100%)`;
     // Set the gradient as the rating background
     totalScore.setAttribute("style", gradient);
 
@@ -50,8 +49,8 @@ const resetGame = function () {
     playerScoreArray[0] = 0;
     playerScoreArray[1] = 0;
     diceImage.classList.add('hidden');
-    document.getElementById('score--0').textContent= 0;
-    document.getElementById('score--1').textContent= 0;
+    // document.getElementById('score--0').textContent= 0;
+    // document.getElementById('score--1').textContent= 0;
     document.getElementById('current--0').textContent = 0; 
     document.getElementById('current--1').textContent = 0; 
     document.querySelector(`.player--0--winner`).textContent = "";
