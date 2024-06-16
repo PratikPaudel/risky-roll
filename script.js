@@ -15,31 +15,26 @@ slider.oninput = function() {
   scoreValue.textContent = this.value;
   targetValue = this.value;
   localStorage.setItem("savedValue", targetValue);
-//   console.log("hi there i am fine");
-//   console.log(localStorage.getItem("savedValue"));
 };
 
 const updateScores = function () {
     document.getElementById(`score--${activePlayer}`).textContent= playerScoreArray[activePlayer];
+    const percentage = ((playerScoreArray[activePlayer] / targetValue) * 100).toFixed(2);
     const totalScore = document.getElementById(`score--${activePlayer}`);
-    // console.log(totalScore);
-    // const ratingContent = totalScore.innerHTML;
-    // const ratingScore = parseInt(ratingContent);
-    // Define if the score is good, meh or bad according to its value
-    // console.log(playerScoreArray[activePlayer]/targetValue);
+    console.log(totalScore);
     const scoreClass = (playerScoreArray[activePlayer]/targetValue) < 0.4 ? "bad" : (playerScoreArray[activePlayer]/targetValue) < 0.6 ? "meh" : "good";
-    // Add score class to the rating
     totalScore.classList.remove("bad", "meh", "good");
     totalScore.classList.add(scoreClass);
-    // After adding the class, get its color
-    const ratingColor = window.getComputedStyle(totalScore).backgroundColor;
-    console.log(ratingColor);
-    // Define the background gradient according to the score and color
-    const gradient = `background: conic-gradient(green ${((playerScoreArray[activePlayer] / targetValue) * 100).toFixed(2)}%, transparent 0 100%)`;
-    // Set the gradient as the rating background
-    totalScore.setAttribute("style", gradient);
 
-    // Wrap the content in a tag to show it above the pseudo element that masks the bar
+    const gradient = scoreClass === "bad" ?
+                             `background: conic-gradient(red ${percentage}%, transparent ${percentage}% 100%)` :
+                             scoreClass === "meh" ?
+                             `background: conic-gradient(yellow ${percentage}%, transparent ${percentage}% 100%)` :
+                             `background: conic-gradient(green ${percentage}%, transparent ${percentage}% 100%)`;
+
+    // const ratingColor = window.getComputedStyle(totalScoreBackground).backgroundColor;
+    // const gradient = `background: conic-gradient(${ratingColor} ${percentage}%, transparent ${percentage}% 100%)`;
+    totalScore.setAttribute("style", gradient);
     totalScore.innerHTML = `<span>${playerScoreArray[activePlayer]}</span>`; 
 }
 
@@ -49,8 +44,8 @@ const resetGame = function () {
     playerScoreArray[0] = 0;
     playerScoreArray[1] = 0;
     diceImage.classList.add('hidden');
-    // document.getElementById('score--0').textContent= 0;
-    // document.getElementById('score--1').textContent= 0;
+    document.getElementById('score--0').textContent= 0;
+    document.getElementById('score--1').textContent= 0;
     document.getElementById('current--0').textContent = 0; 
     document.getElementById('current--1').textContent = 0; 
     document.querySelector(`.player--0--winner`).textContent = "";

@@ -123,17 +123,17 @@ main .player h1 {
 }
 
 /* Classes to give different colors to ratings, based on their score */
-.total-score.good {
+.total-score .good {
   background: green;
   color: green;
 }
 
-.total-score.meh {
+.total-score .meh {
   background: orange;
   color: orange;
 }
 
-.total-score.bad {
+.total-score .bad {
   background: red;
   color: red;
 }
