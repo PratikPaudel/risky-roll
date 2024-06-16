@@ -101,8 +101,9 @@ const playerWon = function (activePlayer) {
         spread: 120
       });
     document.querySelector(`.player--${activePlayer}--winner`).textContent = "Winner!!";
+    rollDiceEl.addEventListener('click', preventDeafult());
+    btnHold.addEventListener('click', preventDeafult());
 }
-
 
 btnHold.addEventListener('click', handleHoldButton);
 newGame.addEventListener('click', resetGame);

@@ -199,12 +199,6 @@ main .player h1 {
 .hidden {
     display: none;
 }
-.player--winner {
-  /* background-color: green; */
-}
-.player--active {
-
-}
 
 .shaking {
   animation: shake 0.5s;
