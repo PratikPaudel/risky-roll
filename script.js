@@ -52,6 +52,7 @@ const resetGame = function () {
     document.querySelector(`.player--0--winner`).textContent = "";
     document.querySelector(`.player--1--winner`).textContent = "";
     const totalScoreElements = document.querySelectorAll('.total-score');
+    playerWin = false;
     totalScoreElements.forEach(element => {
         element.classList.remove('bad', 'meh', 'good');
         element.removeAttribute('style');
