@@ -37,6 +37,13 @@ heading {
   display: flex;
   align-items: center;
   justify-content: center;
+  
+}
+.player-container {
+  display: flex;
+  gap: 10rem;
+  justify-content: space-between;
+  width: 100%;
 }
 main .player h1 {
   color: green;
@@ -44,13 +51,79 @@ main .player h1 {
 
 .player {
     display: flex;
-    flex: 50%;
-    justify-content: center;
+    width: 100%;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    padding: 5rem;
 }
 
+.player button {
+  outline: none !important;
+  padding: 0 !important;
+}
+/* Media query for small devices */
+@media (max-width: 600px) {
+  .main-contents {
+    flex-direction: column;
+    padding: 0 2rem !important;
+    margin: 0 !important;
+  }
+  .player{
+    width: 40%;
+    display: row;
+  }
+  .buttons {
+    width: 100%;
+    order: -1;
+    display: flex;
+    position: relative !important;
+    gap: 1rem !important;
+  }
+  .buttons .diceImage {
+    margin: 0 auto;
+  }
+  .player button {
+    all: unset;
+    padding-bottom: 0.25rem !important;
+  }
+  .player-container {
+    display: flex;
+    gap: 4rem;
+    justify-content: center;
+    width: 100%;
+  }
+  .total-score {
+    width: 5rem !important;
+    height: 5rem !important;
+    padding: 0;
+    margin: 0;
+  }
+  .total-score::after {
+    inset: 0.25rem !important;
+  }
+  .player .total-score span {
+    font-size: 2rem;
+  }
+  .player {
+    padding: 0;
+    margin: 0;
+  }
+
+  heading text p {
+    width: 350px;
+  }
+  .buttons img {
+    width: 90px !important;
+    height: 90px !important;
+  }
+  .buttons button {
+    width: 60% !important;
+    margin: 0 auto !important;
+    padding: 0.25rem !important;
+    font-size: 0.9rem !important;
+    min-height: 40px !important;
+  }
+}
 
 .main-contents .player .total-score {
   position: relative;
@@ -217,3 +290,4 @@ main .player h1 {
   90% { transform: translate(-2px, -2px) rotate(-10deg); }
   100% { transform: translate(0, 0) rotate(0deg); }
 }
+
