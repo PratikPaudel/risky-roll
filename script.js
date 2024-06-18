@@ -22,7 +22,6 @@ const updateScores = function () {
     document.getElementById(`score--${activePlayer}`).textContent= playerScoreArray[activePlayer];
     const percentage = ((playerScoreArray[activePlayer] / targetValue) * 100).toFixed(2);
     const totalScore = document.getElementById(`score--${activePlayer}`);
-    console.log(totalScore);
     const scoreClass = (playerScoreArray[activePlayer]/targetValue) < 0.4 ? "bad" : (playerScoreArray[activePlayer]/targetValue) < 0.6 ? "meh" : "good";
     totalScore.classList.remove("bad", "meh", "good");
     totalScore.classList.add(scoreClass);
