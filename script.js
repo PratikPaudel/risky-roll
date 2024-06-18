@@ -79,7 +79,7 @@ rollDiceEl.addEventListener('click', function () {
         document.querySelector('.shaking')?.classList.remove('shaking');
       }, 500);
     const diceValue= Math.floor(Math.random()*6)+1;
-    diceImage.src = `asset/dice-${diceValue}.png`;
+    diceImage.src = `asset/dice-${diceValue}.svg`;
     diceValue !== 1 
     ? (currentScore += diceValue, document.getElementById(`current--${activePlayer}`).textContent = currentScore)
     : switchPlayer();
