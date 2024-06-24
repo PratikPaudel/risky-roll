@@ -94,13 +94,13 @@ const switchPlayer = function() {
 
 const handleHoldButton = function () {
     if (!playerWin) {
-    playerScoreArray[activePlayer] += currentScore;
-    updateScores(activePlayer);
-    if (playerScoreArray[activePlayer] >= targetValue) {
-        playerWon(activePlayer);
-    }
+      playerScoreArray[activePlayer] += currentScore;
+      updateScores(activePlayer);
+      if (playerScoreArray[activePlayer] >= targetValue) {
+          playerWon(activePlayer);
+      }
     else {
-    switchPlayer();
+      switchPlayer();
     }
 }
 }
